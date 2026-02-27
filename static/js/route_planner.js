@@ -511,7 +511,16 @@ document.getElementById('route-form').addEventListener('submit', async (e) => {
 });
 
 // Initialize map when page loads
-document.addEventListener('DOMContentLoaded', () => { initializeMap(); loadExternalStations(); });
+document.addEventListener('DOMContentLoaded', () => { 
+    initializeMap(); 
+    loadExternalStations();
+    
+    // Add event listener for "Use My Location" button
+    const locationButton = document.getElementById('location-button');
+    if (locationButton) {
+        locationButton.addEventListener('click', getCurrentLocation);
+    }
+});
 
 // Utility: find nearest station marker to a given lat/lng
 function updateNearestStationsVisibility(targetLat, targetLng, k = 2) {
